@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`csvForItems returns an csv export of items 1`] = `
+"Title,Artist,Released,Genre,Rating
+"Your Song","Ke$ha","2012","Salsa","2"
+"Change the World","(G)I-DLE","2022","Acoustic","4"
+"Hanky Panky","All-American Rejects","1993","Nature","5"
+"Sixteen Tons","Van Morrison","2005","Thanksgiving","4"
+"Spirit in the Sky","The Village People","2004","J-Synth","2"
+"The Way You Look Tonight","Rage Against The Machine","2001","Lullabies","3"
+"Pick Up the Pieces","Two Feet","1979","Regional Mexicano","1"
+"Sing, Sing, Sing (With A Swing)","James Arthur","1969","Salsa","5"
+"I Got You Babe","Don McLean","2020","Metal","1"
+"Hang On Sloopy","Four Aces","1966","Lullabies","4"
+"One of Us","En Vogue","2002","Hard Rock","4"
+"Chattanoogie Shoe-Shine Boy","Frankie Avalon","1968","Chill","2"
+"Love Train","Dinah Shore","1988","World","1"
+"Kokomo","RAF Camora","2009","Metal","5"
+"Can't Get Enough of Your Love, Babe","UZI","2000","World","5"
+"More Than Words","G-Eazy","1984","Chill","3"
+"Soul Man","Jon Bellion","2011","World","5"
+"Everyday People","Banda El Recodo","2016","Southern Gospel","4"
+"Yeah!","The Kid LAROI","2015","World","2"
+"Papa's Got a Brand New Bag","Tennessee Ernie Ford","1988","Salsa","3"
+"You Really Got Me","AJ Tracey","1995","Regional Mexicano","1"
+"Crazy in Love","Tommy Edwards","1967","Hard Rock","4"
+"St Louis Blues","Justin Quiles","2004","Mariachi","1"
+"House of the Rising Sun","The Marvelettes","2012","Acoustic Blues","2"
+"Stagger Lee","Pitbull","1976","J-Synth","2""
+`;
+
+exports[`jsonForItems returns an json export of items 1`] = `"[{"title":"Your Song","artist":"Ke$ha","released":2012,"genre":"Salsa","rating":2},{"title":"Change the World","artist":"(G)I-DLE","released":2022,"genre":"Acoustic","rating":4},{"title":"Hanky Panky","artist":"All-American Rejects","released":1993,"genre":"Nature","rating":5},{"title":"Sixteen Tons","artist":"Van Morrison","released":2005,"genre":"Thanksgiving","rating":4},{"title":"Spirit in the Sky","artist":"The Village People","released":2004,"genre":"J-Synth","rating":2},{"title":"The Way You Look Tonight","artist":"Rage Against The Machine","released":2001,"genre":"Lullabies","rating":3},{"title":"Pick Up the Pieces","artist":"Two Feet","released":1979,"genre":"Regional Mexicano","rating":1},{"title":"Sing, Sing, Sing (With A Swing)","artist":"James Arthur","released":1969,"genre":"Salsa","rating":5},{"title":"I Got You Babe","artist":"Don McLean","released":2020,"genre":"Metal","rating":1},{"title":"Hang On Sloopy","artist":"Four Aces","released":1966,"genre":"Lullabies","rating":4},{"title":"One of Us","artist":"En Vogue","released":2002,"genre":"Hard Rock","rating":4},{"title":"Chattanoogie Shoe-Shine Boy","artist":"Frankie Avalon","released":1968,"genre":"Chill","rating":2},{"title":"Love Train","artist":"Dinah Shore","released":1988,"genre":"World","rating":1},{"title":"Kokomo","artist":"RAF Camora","released":2009,"genre":"Metal","rating":5},{"title":"Can't Get Enough of Your Love, Babe","artist":"UZI","released":2000,"genre":"World","rating":5},{"title":"More Than Words","artist":"G-Eazy","released":1984,"genre":"Chill","rating":3},{"title":"Soul Man","artist":"Jon Bellion","released":2011,"genre":"World","rating":5},{"title":"Everyday People","artist":"Banda El Recodo","released":2016,"genre":"Southern Gospel","rating":4},{"title":"Yeah!","artist":"The Kid LAROI","released":2015,"genre":"World","rating":2},{"title":"Papa's Got a Brand New Bag","artist":"Tennessee Ernie Ford","released":1988,"genre":"Salsa","rating":3},{"title":"You Really Got Me","artist":"AJ Tracey","released":1995,"genre":"Regional Mexicano","rating":1},{"title":"Crazy in Love","artist":"Tommy Edwards","released":1967,"genre":"Hard Rock","rating":4},{"title":"St Louis Blues","artist":"Justin Quiles","released":2004,"genre":"Mariachi","rating":1},{"title":"House of the Rising Sun","artist":"The Marvelettes","released":2012,"genre":"Acoustic Blues","rating":2},{"title":"Stagger Lee","artist":"Pitbull","released":1976,"genre":"J-Synth","rating":2}]"`;

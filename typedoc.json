@@ -1,0 +1,13 @@
+{
+    "projectDocuments": ["./src/docs/*.md"],
+    "entryPoints": ["src/index.js"],
+    "cleanOutputDir": true,
+    "categorizeByGroup": false,
+    "navigation": {
+        "includeCategories": true,
+        "includeGroups": true,
+        "includeFolders": true,
+        "compactFolders": true,
+        "excludeReferences": true
+    },
+}
