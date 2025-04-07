@@ -1,6 +1,5 @@
 {
   "name": "@bastilian/tabletools",
-  "private": "true",
   "version": "0.0.0",
   "description": "A collection of hooks and components to build tables based on the PatternFly (v4) `Table` component and the Red Hat Insights `PrimaryToolbar` component.",
   "main": "dist/index.js",
