@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import propTypes from 'prop-types';
 import { Pagination, PaginationVariant } from '@patternfly/react-core';
 import {
@@ -11,6 +11,8 @@ import PrimaryToolbar from '@redhat-cloud-services/frontend-components/PrimaryTo
 import TableToolbar from '@redhat-cloud-services/frontend-components/TableToolbar';
 
 import useTableTools from '~/hooks/useTableTools';
+import { TableContext } from '~/hooks/useTableState/constants';
+import { TableStateProvider } from '~/components';
 
 /**
  * This component is a wrapper around the Patternfly Table component(s), the FEC PrimaryToolbar and combines them with the `useTableTools` hook
@@ -55,7 +57,6 @@ const TableToolsTable = ({
       filters,
       toolbarProps: toolbarPropsProp,
       tableProps: tablePropsRest,
-      numberOfItems: total,
       total,
       ...options,
     });
@@ -119,4 +120,15 @@ TableToolsTable.propTypes = {
   paginationProps: propTypes.object,
 };
 
-export default TableToolsTable;
+const TableToolsTableWithOrWithoutProvider = (props) => {
+  const tableContext = useContext(TableContext);
+  const Wrapper = tableContext ? React.Fragment : TableStateProvider;
+
+  return (
+    <Wrapper>
+      <TableToolsTable {...props} />
+    </Wrapper>
+  );
+};
+
+export default TableToolsTableWithOrWithoutProvider;

@@ -57,6 +57,11 @@ const useExampleDataQuery = ({
     [api, params, paramsOption]
   );
 
+  const fetch = useCallback(
+    async (params) => await api({ ...params, ...paramsOption }),
+    [api, paramsOption]
+  );
+
   return {
     ...(result
       ? {
@@ -69,6 +74,7 @@ const useExampleDataQuery = ({
         }
       : {}),
     loading,
+    fetch,
     exporter,
     itemIdsInTable,
     itemIdsOnPage,

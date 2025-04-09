@@ -6,6 +6,7 @@ import TableToolsTableWithRowDetails from '../components/TableToolsTableWithRowD
 import TableToolsTableWithExport from '../components/TableToolsTableWithExport';
 import TableToolsTableWithBulkSelect from '../components/TableToolsTableWithBulkSelect';
 import TableToolsTableWithTreeTable from '../components/TableToolsTableWithTreeTable';
+import SimpleTableToolsTableWithAsyncFunction from '../components/SimpleTableToolsTableWithAsyncFunction';
 
 export const simple = {
   title: 'Simple',
@@ -58,7 +59,13 @@ export const withTreeTable = {
   description: 'Table Tools Table Example with a tableTree provided',
 };
 
-// TODO Add example that uses an async function and not a query hook
+export const withAsyncFunction = {
+  title: 'With async function',
+  Component: SimpleTableToolsTableWithAsyncFunction,
+  description:
+    'Table Tools Table Example with an async function to fetch results',
+};
+
 // TODO Add example with default sorting set to column other than the first
 // TODO Add example with default initial filters set
 // TODO Add example with custom emptyRows/empty state
@@ -72,4 +79,5 @@ export default [
   withExport,
   withBulkSelect,
   withTreeTable,
+  withAsyncFunction,
 ];
