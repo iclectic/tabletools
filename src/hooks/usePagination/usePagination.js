@@ -6,7 +6,7 @@ import usePaginationState from './hooks/usePaginationState';
  * Provides `pagination` props and functionality for a (Primary)Toolbar
  *
  *  @param   {object}   [options]                        AsyncTableTools options
- *  @param   {number}   options.numberOfItems            The total number of items (required).
+ *  @param   {number}   options.total                    The total number of items (required).
  *  @param   {number}   [options.perPage]                A number that will dictate the amount of items shown per page.
  *  @param   {Function} [options.serialisers.pagination] A function to provide a serialiser for the table state
  *
@@ -16,7 +16,7 @@ import usePaginationState from './hooks/usePaginationState';
  *
  */
 const usePagination = (options = {}) => {
-  const { numberOfItems, pagination = true } = options;
+  const { total, pagination = true } = options;
   const [paginationState, setPaginationState] = usePaginationState(options);
 
   const setPagination = useCallback(
@@ -52,7 +52,7 @@ const usePagination = (options = {}) => {
         toolbarProps: {
           pagination: {
             ...(paginationState?.state || {}),
-            itemCount: numberOfItems,
+            itemCount: total,
             onSetPage: (_, page) => setPage(page),
             onPerPageSelect: (_, perPage) =>
               setPagination({ page: 1, perPage }),

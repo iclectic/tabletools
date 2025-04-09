@@ -21,11 +21,11 @@ import { itemObserver, identifyItems } from './helpers';
  *  @group Hooks
  *
  */
-const useItems = (itemsProp) => {
+const useItems = (itemsProp, { total: optionsTotal }) => {
   // TODO We should not keep all items in the table state
   // We might use this in some cases, but we can probably accomplish the same without these
   // It might also be bad and cause cycles of the tableState updating and then updating again when items are set
-  const [items, setItems] = useTableState('items');
+  const [[items, total] = [], setItems] = useTableState('items');
   const [loaded] = useTableState('loaded', false, {
     observers: {
       [TABLE_STATE_NAMESPACE]: itemObserver,
@@ -37,20 +37,23 @@ const useItems = (itemsProp) => {
   useDeepCompareEffect(() => {
     const setStateFromAsyncItems = async () => {
       if (typeof itemsProp === 'function') {
-        // TODO When calling an async function we need a way to get an pass along the "total"
-        const items = await itemsProp(serialisedTableState, tableState);
-        setItems(identifyItems(items));
+        const [items, total] = await itemsProp(
+          serialisedTableState,
+          tableState
+        );
+        setItems([identifyItems(items), total]);
       } else {
-        setItems(identifyItems(itemsProp));
+        setItems([identifyItems(itemsProp), optionsTotal]);
       }
     };
 
     setStateFromAsyncItems();
-  }, [setItems, itemsProp, serialisedTableState, tableState]);
+  }, [setItems, itemsProp, serialisedTableState, tableState, optionsTotal]);
 
   return {
     loaded,
     items,
+    total,
   };
 };
 

@@ -39,7 +39,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     dedicatedAction,
     actionResolver,
   } = options;
-  const { loaded, items: usableItems } = useItems(items);
+  const { loaded, items: usableItems, total } = useItems(items, options);
   const actionResolverEnabled = usableItems?.length > 0;
 
   const {
@@ -61,7 +61,10 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     [columnManagerAction, options, dedicatedAction]
   );
 
-  const { toolbarProps: paginationToolbarProps } = usePagination(options);
+  const { toolbarProps: paginationToolbarProps } = usePagination({
+    ...options,
+    total,
+  });
 
   const { toolbarProps: conditionalFilterProps } = useFilterConfig(options);
 
@@ -81,6 +84,7 @@ const useAsyncTableTools = (items, columns, options = {}) => {
     tableView: bulkSelectTableViewOptions,
   } = useBulkSelect({
     ...options,
+    total,
     itemIdsOnPage: usableItems?.map(({ id }) => id),
   });
 

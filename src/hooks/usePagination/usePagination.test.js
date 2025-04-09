@@ -7,7 +7,7 @@ import usePagination from './usePagination';
 
 describe('usePagination', () => {
   const defaultOptions = {
-    numberOfItems: 300,
+    total: 300,
   };
 
   it('returns no paginate configuration by default if disabled', () => {
