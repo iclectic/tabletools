@@ -9,7 +9,7 @@ import TableToolsTable from './TableToolsTable';
 describe('TableToolsTable', () => {
   const exampleItems = items(100).sort((item) => item.name);
   const itemsFunc = jest.fn(async () => {
-    return exampleItems.slice(0, 10);
+    return [exampleItems.slice(0, 10), exampleItems.length];
   });
   const ariaLabel = 'Async Test Table';
   const defaultProps = {

@@ -22,7 +22,7 @@ const useViewState = (options) => {
     []
   );
   const itemObserver = useCallback(
-    (_currentTableViewState, _previousItems, items) => {
+    (_currentTableViewState, _previousItems, [items]) => {
       let newView;
       if (
         typeof items === 'undefined' &&

@@ -32,7 +32,10 @@ describe('useTableTools', () => {
   });
 
   it('returns a object with tableProps and toolbarProps while fetching items async', async () => {
-    const asyncFunction = jest.fn(async () => exampleItems);
+    const asyncFunction = jest.fn(async () => [
+      exampleItems,
+      exampleItems.length,
+    ]);
 
     renderHook(
       () => useTableTools(asyncFunction, columns),

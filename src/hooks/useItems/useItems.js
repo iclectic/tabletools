@@ -21,7 +21,7 @@ import { itemObserver, identifyItems } from './helpers';
  *  @group Hooks
  *
  */
-const useItems = (itemsProp, { total: optionsTotal }) => {
+const useItems = (itemsProp, { total: optionsTotal } = {}) => {
   // TODO We should not keep all items in the table state
   // We might use this in some cases, but we can probably accomplish the same without these
   // It might also be bad and cause cycles of the tableState updating and then updating again when items are set
