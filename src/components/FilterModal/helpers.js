@@ -51,7 +51,7 @@ export const convertToFilterValues = (selectedValues, filter) => {
 
 export const convertToSelectValues = (filterValues, filter) => {
   if (filter.type === 'group') {
-    return Object.entries(filterValues).reduce(
+    return Object.entries(filterValues || {}).reduce(
       (selection, [group, groupSelection]) => [
         ...selection,
         ...Object.keys(groupSelection).map(

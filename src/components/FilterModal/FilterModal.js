@@ -29,7 +29,6 @@ const FilterModal = ({
   // TODO Replace this with using the "StaticTableToolsTable" instead for cases where there is no function to fetch
   const fetchItems = useFetchItems(filter);
   const preselected = convertToSelectValues(activeFilters, filter);
-  console.log(preselected);
 
   return (
     <Modal
