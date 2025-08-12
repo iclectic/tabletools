@@ -1,8 +1,8 @@
 import { renderHook } from '@testing-library/react';
-import {DEFAULT_RENDER_OPTIONS} from '~/support/testHelpers';
+import { DEFAULT_RENDER_OPTIONS } from '~/support/testHelpers';
 import useTableFeatures from './useTableFeatures';
 
-jest,mick('../useTableState', () => ({
+jest.mock('../useTableState', () => ({
     __esModule: true,
     default: jest.fn(),
 }));
@@ -33,7 +33,6 @@ describe('useTableFeatures', () => {
         
         expect(result.current).toEqual({
             isExpandable: false,
-            
             isSelectable: false,
             selectVariant: 'checkbox',
             variant: 'default',

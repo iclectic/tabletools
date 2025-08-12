@@ -7,7 +7,7 @@ import filters from '~/support/factories/filters';
 import { TableToolsTable, TableStateProvider} from '~/components';
 import {useTableFeatures} from '~/hooks';
 
-const queryClient = newQueryClient();
+const queryClient = new QueryClient();
 
 const meta = {
     title: 'TableToolsTable/SkeletonTable Demo',
@@ -130,7 +130,7 @@ export const SelectableSkeletonTable = {
 
 export const SelectableRadioSkeletonTable = {
     args: {
-        enableBucketSelect: true,
+        enableBulkSelect: true,
         enableDetails: false,
         variant: 'default',
         selectVariant: 'radio',
