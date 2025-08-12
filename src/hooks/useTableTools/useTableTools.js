@@ -12,6 +12,7 @@ import useTableView from '~/hooks/useTableView';
 import useExport from '~/hooks/useExport';
 import useRadioSelect from '~/hooks/useRadioSelect';
 import useToolbarActions from '~/hooks/useToolbarActions';
+import useTableState from '~/hooks/useTableState';
 
 /**
  *  @typedef {object} useTableToolsReturn
@@ -165,7 +166,13 @@ const useTableTools = (
       actionResolverEnabled,
     ],
   );
+  // Store tableProps in table state for access by other components
+  const [, setTablePropsState] = useTableState('tableProps');
+  useEffect(() => {
+    setTablePropsState(tableProps);  
+  }, [tableProps, setTablePropsState]);
 
+  
   useEffect(() => {
     if (debug) {
       console.group('TableTools props');

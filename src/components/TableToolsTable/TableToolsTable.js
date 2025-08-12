@@ -74,6 +74,10 @@ const TableToolsTable = ({
             rowsCount={toolbarProps?.pagination?.perPage || 10}
             // TODO use Th when migrating to PF composable tables
             columns={columns.map(({ title }) => title)}
+            isExpandable={tableProps?.onCollapse !== undefined}
+            isSelectable={tableProps?.onSelect !== undefined}
+            variant={tableProps?.variant || 'default'}
+            selectVariant={tableProps?.selectVariant || 'checkbox'}
           />
         ) : (
           <Table aria-label="Table" {...tableProps}>
