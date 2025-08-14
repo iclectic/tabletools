@@ -1,151 +1,188 @@
-import React, {useState} from 'react';
-import { QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import { Button } from '@patternfly/react-core';
-import defaultStoryMeta from '~/support/defaultStoryMeta';
-import columns from '~/support/factories/columns';
-import filters from '~/support/factories/filters';
-import { TableToolsTable, TableStateProvider} from '~/components';
-import {useTableFeatures} from '~/hooks';
+import React from 'react';
+import PropTypes from 'prop-types';
+// import { SkeletonTable } from '@patternfly/react-component-groups';
+import EnhancedSkeletonTable from './EnhancedSkeletonTable';
+import { TableToolsContext } from '../../hooks/useTableTools';
 
-const queryClient = new QueryClient();
+const sampleColumns = ['Name', 'Status', 'Location', 'Last Modified'];
 
-const meta = {
-    title: 'TableToolsTable/SkeletonTable Demo',
-    component: TableToolsTable,
-    ...defaultStoryMeta,
+export default {
+  title: 'TableToolsTable/Enhanced SkeletonTable',
+  component: EnhancedSkeletonTable,
+  parameters: {
+    layout: 'padded',
+  },
 };
 
-//  Component to demonstrate useTableFeatures hook
-const TableFeaturesDisplay = () => {
-    const features = useTableFeatures();
+// Test basic PatternFly SkeletonTable first
+// export const PatternFlyBasic = {
+//   render: () => (
+//     <div>
+//       <h3>Basic PatternFly SkeletonTable</h3>
+//       <SkeletonTable
+//         columns={sampleColumns}
+//         rowsCount={5}
+//       />
+//     </div>
+//   ),
+// };
 
+// Simple test without any complex components
+export const SimpleTest = {
+  render: () => {
+    console.log('SimpleTest rendering...');
     return (
-        <div style={{
-            padding: '16px',
-            backgroundColor: '#f5f5f5',
-            marginBottom: '16px',
-            borderRadius: '4px'
-         }}>
-            <h4>Current Table Features (via useTableFeatures hook):</h4>
-            <ul>
-                <li>Is Expandable: {features.isExpandable ? 'Yes' : 'No'}</li>
-                <li>Is Selectable: {features.isSelectable ? 'Yes' : 'No'}</li>
-                <li>Variant: {features.variant}</li>
-                <li>Select Variant: {features.selectVariant}</li>
-            </ul>
-        </div>
+      <div>
+        <h3>Simple Test</h3>
+        <p>This is a simple test story to verify Storybook is working.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Loading...</td>
+              <td>Loading...</td>
+              <td>Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     );
-
+  },
 };
 
-const SkeletonTableDemoExample = ({
-    enableBulkSelect,
-    enableDetails, 
-    variant,
-    selectVariant
-}) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [items, setItems] = useState([]);
-
-    const toggleLoading = () => {
-        if (isLoading) {
-            // Simulate loading data
-            setItems([
-                {id: 1, name: 'Item 1', status: 'Active'},
-                { id: 2, name: 'Item 2', status: 'Inactive'},
-                { id: 3, name: 'Item 3', status: 'Active'},
-            ]);
-            setIsLoading(false);
-        } else {
-            setItems([]);
-            setIsLoading(true);
-        }
-    };
-    
-    const tableColumns = [
-        { title: 'Name', key: 'name'},
-        { title: 'Status', key: 'status'},
-    ];
-
-    return (
-        <QueryClientProvider client={queryClient}>
-            <TableStateProvider>
-                <div style={{padding: '20px'}}>
-                    <div style={{ marginBottom: '20px' }}>
-                        <Button onClick={toggleLoading} variant="primary">
-                            {isLoading ? 'Load Data' : 'Show Loading State'}
-                        </Button>
-                    </div>   
-                    <TableFeaturesDisplay />
-                    <TableToolsTable
-                     loading={isLoading}
-                     items={items}
-                     columns={tableColumns}
-                     options={{
-                        bulkSelect: enableBulkSelect ? {
-                            onSelect: (selected) => console.log('Selected:', selected),
-                            selectVariant,
-                        } : undefined,
-                        details: enableDetails ? {
-                            component: ({ item }) => <div>Details for {item.name}</div>,
-                        } : undefined,
-                        variant,
-                     }}
-                    />
-                </div>
-            </TableStateProvider>
-        </QueryClientProvider>
-    );
+// Direct Enhanced SkeletonTable - Basic
+export const BasicSkeleton = {
+  render: () => (
+    <div>
+      <h3>Basic Enhanced SkeletonTable</h3>
+      <EnhancedSkeletonTable
+        columns={sampleColumns}
+        rowsCount={8}
+        isExpandable={false}
+        isSelectable={false}
+        variant="default"
+      />
+    </div>
+  ),
 };
 
-export const BasicSkeletonTable = {
-    args: {
-        enableBulkSelect: false,
-        enableDetails: false,
-        variant: 'default',
-        selectVariant: 'checkbox',
-    },
-    render: (args) => <SkeletonTableDemoExample {...args} />,
+// Direct Enhanced SkeletonTable - Expandable
+export const ExpandableSkeleton = {
+  render: () => (
+    <div>
+      <h3>Expandable Enhanced SkeletonTable</h3>
+      <EnhancedSkeletonTable
+        columns={sampleColumns}
+        rowsCount={8}
+        isExpandable={true}
+        isSelectable={false}
+        variant="default"
+      />
+    </div>
+  ),
 };
 
-export const ExpandableSkeletonTable = {
-    args: {
-        enableBulkSelect: false,
-        enableDetails: true,
-        variant: 'default',
-        selectVariant: 'checkbox',
-    },
-    render: (args) => <SkeletonTableDemoExample {...args} />,
+// Direct Enhanced SkeletonTable - Selectable
+export const SelectableSkeleton = {
+  render: () => (
+    <div>
+      <h3>Selectable Enhanced SkeletonTable</h3>
+      <EnhancedSkeletonTable
+        columns={sampleColumns}
+        rowsCount={8}
+        isExpandable={false}
+        isSelectable={true}
+        variant="default"
+        selectVariant="checkbox"
+      />
+    </div>
+  ),
 };
 
-export const SelectableSkeletonTable = {
-    args: {
-        enableBulkSelect: true,
-        enableDetails: false,
-        variant: 'default',
-        selectVariant: 'checkbox',
-    },
-    render: (args) => <SkeletonTableDemoExample {...args} />,
+// Direct Enhanced SkeletonTable - Compact with all features
+export const CompactAllFeatures = {
+  render: () => (
+    <div>
+      <h3>Compact Enhanced SkeletonTable (Expandable + Selectable)</h3>
+      <EnhancedSkeletonTable
+        columns={sampleColumns}
+        rowsCount={8}
+        isExpandable={true}
+        isSelectable={true}
+        variant="compact"
+        selectVariant="radio"
+      />
+    </div>
+  ),
 };
 
-export const SelectableRadioSkeletonTable = {
-    args: {
-        enableBulkSelect: true,
-        enableDetails: false,
-        variant: 'default',
-        selectVariant: 'radio',
-    },
-    render: (args) => <SkeletonTableDemoExample {...args} />,
+// Demo with TableToolsContext to show feature detection
+const ContextDemo = ({ tableProps, title }) => {
+  return (
+    <TableToolsContext.Provider value={{ tableProps }}>
+      <div>
+        <h3>{title}</h3>
+        <p>
+          <strong>Table Props:</strong> {JSON.stringify(tableProps, null, 2)}
+        </p>
+        <EnhancedSkeletonTable
+          columns={sampleColumns}
+          rowsCount={6}
+          isExpandable={!!tableProps.onCollapse}
+          isSelectable={!!tableProps.onSelect}
+          variant={tableProps.variant || 'default'}
+          selectVariant={tableProps.selectVariant || 'checkbox'}
+        />
+      </div>
+    </TableToolsContext.Provider>
+  );
 };
 
-export const CompactExpandableSelectableSkeletonTable = {
-    args: {
-        enableBulkSelect: true,
-        enableDetails: true,
+ContextDemo.propTypes = {
+  tableProps: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+};
+
+export const ContextBasic = {
+  render: () => (
+    <ContextDemo title="Context Demo - Basic Table" tableProps={{}} />
+  ),
+};
+
+export const ContextExpandable = {
+  render: () => (
+    <ContextDemo
+      title="Context Demo - Expandable Table"
+      tableProps={{ onCollapse: () => {} }}
+    />
+  ),
+};
+
+export const ContextSelectable = {
+  render: () => (
+    <ContextDemo
+      title="Context Demo - Selectable Table"
+      tableProps={{ onSelect: () => {} }}
+    />
+  ),
+};
+
+export const ContextCompactAll = {
+  render: () => (
+    <ContextDemo
+      title="Context Demo - Compact with All Features"
+      tableProps={{
+        onCollapse: () => {},
+        onSelect: () => {},
         variant: 'compact',
-        selectVariant: 'checkbox',
-    },
-    render: (args) => <SkeletonTableDemoExample {...args} />,
+        selectVariant: 'radio',
+      }}
+    />
+  ),
 };
-
-export default meta;

@@ -7,10 +7,8 @@ import {
   TableBody,
   TableHeader,
 } from '@patternfly/react-table/deprecated';
-import {
-  SkeletonTable,
-  ColumnManagementModal,
-} from '@patternfly/react-component-groups';
+import { ColumnManagementModal } from '@patternfly/react-component-groups';
+import EnhancedSkeletonTable from './EnhancedSkeletonTable';
 
 import PrimaryToolbar from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 import TableToolbar from '@redhat-cloud-services/frontend-components/TableToolbar';
@@ -70,7 +68,7 @@ const TableToolsTable = ({
       {
         // TODO This is a bit hackish. We should rather have an indicator if data necessary for the current view is loading.
         (view === 'rows' || (view === 'tree' && !treeTable)) && loading ? (
-          <SkeletonTable
+          <EnhancedSkeletonTable
             rowsCount={toolbarProps?.pagination?.perPage || 10}
             // TODO use Th when migrating to PF composable tables
             columns={columns.map(({ title }) => title)}

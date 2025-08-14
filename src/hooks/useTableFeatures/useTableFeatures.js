@@ -1,25 +1,23 @@
-import {useMemo} from 'react';
-import useTableState from '../useTableState';
+import { useMemo, useContext } from 'react';
+import { TableToolsContext } from '../useTableTools';
 
 /**
- *  Hook that exposes table features through the context
- * 
- * @returns {object} Object containing table feature flags
- * 
- * @group Hooks
+ * Hook to access table feature flags from the current table context
+ * Provides information about table capabilities like expandable rows, selectable rows, etc.
  */
+export const useTableFeatures = () => {
+  const context = useContext(TableToolsContext);
+  const { tableProps } = context || {};
 
-const useTableFeatures = () => {
-    const [tableProps] = useTableState('tableProps');
-
-    const features = useMemo(() => ({
-        isExpandable: tableProps?.onCollapse !== undefined,
-        isSelectable: tableProps?.onSelect !== undefined,
-        selectVariant: tableProps?.selectVariant || 'checkbox',
-        variant: tableProps?.variant || 'default',
-    }), [tableProps]);
-
-    return features;
+  return useMemo(
+    () => ({
+      isExpandable: tableProps?.onCollapse !== undefined,
+      isSelectable: tableProps?.onSelect !== undefined,
+      selectVariant: tableProps?.selectVariant || 'checkbox',
+      variant: tableProps?.variant || 'default',
+    }),
+    [tableProps],
+  );
 };
 
 export default useTableFeatures;

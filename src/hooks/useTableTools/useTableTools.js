@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, createContext } from 'react';
 
 import useDebug from '~/hooks/useDebug';
 import usePagination from '~/hooks/usePagination';
@@ -12,7 +12,10 @@ import useTableView from '~/hooks/useTableView';
 import useExport from '~/hooks/useExport';
 import useRadioSelect from '~/hooks/useRadioSelect';
 import useToolbarActions from '~/hooks/useToolbarActions';
-import useTableState from '~/hooks/useTableState';
+// import useTableState from '~/hooks/useTableState'; // Temporarily disabled
+
+// Create context for sharing table state
+export const TableToolsContext = createContext(null);
 
 /**
  *  @typedef {object} useTableToolsReturn
@@ -166,13 +169,23 @@ const useTableTools = (
       actionResolverEnabled,
     ],
   );
-  // Store tableProps in table state for access by other components
-  const [, setTablePropsState] = useTableState('tableProps');
-  useEffect(() => {
-    setTablePropsState(tableProps);  
-  }, [tableProps, setTablePropsState]);
+  // Temporarily disabled - debugging infinite loop
+  // const [, setTablePropsState] = useTableState('tableProps');
+  // useEffect(() => {
+  //   setTablePropsState({
+  //     onCollapse: tableProps.onCollapse,
+  //     onSelect: tableProps.onSelect,
+  //     selectVariant: tableProps.selectVariant,
+  //     variant: tableProps.variant,
+  //   });
+  // }, [
+  //   tableProps.onCollapse,
+  //   tableProps.onSelect,
+  //   tableProps.selectVariant,
+  //   tableProps.variant,
+  //   setTablePropsState
+  // ]);
 
-  
   useEffect(() => {
     if (debug) {
       console.group('TableTools props');

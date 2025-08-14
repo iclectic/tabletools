@@ -1,1 +1,1 @@
-export { default } from './useTableTools';
+export { default, TableToolsContext } from './useTableTools';
